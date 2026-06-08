@@ -109,8 +109,9 @@
   .modal-head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
   .modal-head .mnum{color:var(--accent);font-weight:600;font-size:14px;margin-top:4px}
   .modal-head .mtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-  .modal-section{padding:16px 28px 20px;border-top:1px solid var(--border)}
-  .modal-section h3{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .modal-section{padding:20px 28px 20px}
+  .modal-section+.modal-section{border-top:1px solid var(--border)}
+  .modal-section h3{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px}
   .modal-section h3:before{content:"";width:16px;height:2px;background:var(--accent)}
   .testimonial{font-size:15px;line-height:1.7;color:var(--text);font-style:italic;border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:0}
   .gallery-main{position:relative;width:100%;aspect-ratio:16/10;max-height:48vh;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);margin-bottom:10px}
@@ -150,7 +151,8 @@
     main{padding:26px 18px 60px}
     .controls-inner{padding:14px 18px}
     .grid{gap:16px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-    .modal-head,.modal-section{padding-left:20px;padding-right:20px}
+    .modal-head{padding-left:20px;padding-right:20px}
+    .modal-section{padding-left:20px;padding-right:20px}
   }
   @media (max-width:560px){
     .controls{top:63px}
@@ -166,7 +168,7 @@
     .modal-nav{top:12px;right:58px}
     .modal-close{top:12px;right:12px}
     .modal-face{width:60px;height:60px;min-width:60px}
-    .modal-section{padding:14px 16px 18px}
+    .modal-section{padding:16px 16px 16px}
     .gnav{width:40px;height:40px;font-size:22px}
     .thumb{width:64px;height:46px}
     .fs-nav{width:44px;height:44px;font-size:24px}
