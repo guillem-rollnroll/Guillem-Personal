@@ -380,7 +380,7 @@ function rowToMember(row){
     themes:themes.length?themes:['retrat'],
     portrait:row.portrait||'https://i.pravatar.cc/300?img=1',
     photos:photos.length?photos:['https://picsum.photos/seed/dpsb-'+row.num+'-0/1600/1067'],
-    testimonial:row.testimonial||''
+    testimonial:(row.testimonial||'').replace(/^[""“”]+|[""“”]+$/g,'').trim()
   };
 }
 // Proxy CORS necessari quan el fitxer s'obre des de local (file://)
@@ -500,7 +500,7 @@ function openModal(num){
       </div>
       <div class="thumbs">${m.photos.map((p,i)=>`<div class="thumb ${i===0?'active':''}" onclick="galShow(${i})"><img src="${p}" alt=""></div>`).join('')}</div>
     </div>
-    ${m.testimonial?`<div class="modal-section"><h3>${t('m_testimonial')}</h3><p class="testimonial">“${m.testimonial}”</p></div>`:''}`;
+    ${m.testimonial?`<div class=”modal-section”><h3>${t('m_testimonial')}</h3><p class=”testimonial”>“${m.testimonial}”</p></div>`:''}`;
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
