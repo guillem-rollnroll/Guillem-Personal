@@ -272,7 +272,7 @@
    dades d'exemple.
 
    Columnes esperades al full (fila 1 = capcalera):
-     num | name | themes | portrait | photo1 | photo2 | photo3 | photo4 | photo5 | testimonial
+     num | name | themes | portrait | photo1 | photo2 | ... | photo10 | testimonial
 
    - themes: claus separades per comes (ex: retrat,paisatge)
    - portrait: URL de la foto de perfil del soci
@@ -372,7 +372,7 @@ function parseCSV(text){
   return valid;
 }
 function rowToMember(row){
-  const photos=[row.photo1,row.photo2,row.photo3,row.photo4,row.photo5].filter(Boolean);
+  const photos=[row.photo1,row.photo2,row.photo3,row.photo4,row.photo5,row.photo6,row.photo7,row.photo8,row.photo9,row.photo10].filter(Boolean);
   const themes=(row.themes||'').split(',').map(s=>s.trim()).filter(Boolean);
   return {
     num:parseInt(row.num,10)||0,
