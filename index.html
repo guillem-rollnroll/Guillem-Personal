@@ -454,7 +454,9 @@ function renderGrid(){
   if(list.length===0){grid.innerHTML='<div class="empty" style="grid-column:1/-1">'+t('no_results')+'</div>';return;}
   grid.innerHTML=list.map(m=>`
     <article class="card" onclick="openModal(${m.num})">
-      <div class="featured"><img class="work" src="${m.photos[0]}" alt="Obra de ${m.name}" loading="lazy"></div>
+      <div class="featured"><img class="work" src="${m.photos[0]}" alt="Obra de ${m.name}" loading="lazy"
+        data-photos='${JSON.stringify(m.photos)}' data-idx="0"
+        onload="fixCardCover(this)" onerror="fixCardCover(this)"></div>
       <div class="body">
         <img class="avatar" src="${m.portrait}" alt="${m.name}" loading="lazy">
         <div class="info">
@@ -535,6 +537,22 @@ document.addEventListener('keydown',e=>{
 });
 
 function buildHeroBg(){const bg=document.getElementById('heroBg');let html='';for(let i=0;i<36;i++)html+='<div style="background-image:url(\'https://picsum.photos/seed/herodpsb-'+i+'/300/300\')"></div>';bg.innerHTML=html;}
+
+/* ---------- COVER HORITZONTAL ---------- */
+function fixCardCover(img){
+  // Si la imatge és vertical (altura > amplada), prova la següent foto
+  if(img.naturalWidth>0 && img.naturalHeight>img.naturalWidth) return; // ja és horitzontal
+  if(img.naturalWidth===0 && img.naturalHeight===0 && !img.complete) return; // encara carregant
+  try{
+    const photos=JSON.parse(img.dataset.photos||'[]');
+    let idx=parseInt(img.dataset.idx||'0')+1;
+    if(idx<photos.length){
+      img.dataset.idx=idx;
+      img.src=photos[idx];
+    }
+    // Si no queden més fotos, deixa la que hi ha (vertical)
+  }catch(e){}
+}
 
 /* ---------- INIT ---------- */
 async function init(){
