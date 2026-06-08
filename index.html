@@ -540,9 +540,10 @@ function buildHeroBg(){const bg=document.getElementById('heroBg');let html='';fo
 
 /* ---------- COVER HORITZONTAL ---------- */
 function fixCardCover(img){
-  // Si la imatge és vertical (altura > amplada), prova la següent foto
-  if(img.naturalWidth>0 && img.naturalHeight>img.naturalWidth) return; // ja és horitzontal
-  if(img.naturalWidth===0 && img.naturalHeight===0 && !img.complete) return; // encara carregant
+  if(!img.complete || img.naturalWidth===0) return; // encara carregant o error
+  // Si ja és horitzontal (amplada >= altura), no cal fer res
+  if(img.naturalWidth >= img.naturalHeight) return;
+  // És vertical: prova la següent foto
   try{
     const photos=JSON.parse(img.dataset.photos||'[]');
     let idx=parseInt(img.dataset.idx||'0')+1;
@@ -550,7 +551,7 @@ function fixCardCover(img){
       img.dataset.idx=idx;
       img.src=photos[idx];
     }
-    // Si no queden més fotos, deixa la que hi ha (vertical)
+    // Si no queden més fotos, deixa la que hi ha
   }catch(e){}
 }
 
